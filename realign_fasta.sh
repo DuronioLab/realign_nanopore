@@ -10,12 +10,10 @@
 ########################################################################
 
 ref_fasta="./plasmid_reference_sequence.fasta"
-ref_query="agcggtggccgaaaaacgggcggaaacccttgcaaatgctggattttctgcctgtggaca"
 plasmid_length=29000
 fastq_file="./nanopore_raw.fastq"
 
 # ref_fasta = an accurate ref sequence for your plasmid with layout: [1/2 vector]-[insert]-[1/2 vector].
-# ref_query = the 5'-most 60 bases of the ref_fasta sequence.
 # plasmid_length = expected length of plasmid in bp.
 # fastq_file = the fastq results from plasmidaurus.
 
@@ -31,15 +29,13 @@ fastq_file="./nanopore_raw.fastq"
 
 
 #Set up query.fasta
-echo ">query_sequence" > query.fasta
-echo $ref_query >> query.fasta
-
+module purge && module load seqkit
+seqkit subseq -r 1:60 > query.fasta
 
 #Filter raw fastq for size and convert to fasta
 min=$((plasmid_length*90/100))
 max=$((plasmid_length*110/100))
 
-module purge && module load seqkit
 seqkit seq --min-len $min --max-len $max $fastq_file -o out.fastq
 seqkit fq2fa out.fastq -o out.fasta
 
