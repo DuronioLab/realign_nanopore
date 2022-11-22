@@ -6,7 +6,7 @@
 #SBATCH --mem=16g
 
 ########################################################################
-#                    Change these 4 parameters                         #
+#                    Change these 3 parameters                         #
 ########################################################################
 
 ref_fasta="./plasmid_reference_sequence.fasta"
