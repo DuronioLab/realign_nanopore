@@ -12,16 +12,13 @@ Clone the script into a new directory in Longleaf.
 
 1. Generate a `plasmid_reference_sequence.fasta` file in your favorite plasmid editor. The linear sequence should start and end in vector, thus having the approximate layout: [1/2 vector]-[insert(s)]-[1/2 vector].
 
-2. Obtain the reference query, `ref_query`, by taking the first 60 bp of the reference sequence.
+2. Determine the expected plasmid length, `plasmid_length`
 
-3. Determine the expected plasmid length, `plasmid_length`
-
-4. Upload your `plasmid_reference_sequence.fasta` and the plasmidsaurus fastq (ex: `nanopore_raw.fastq`) to your Longleaf directory.
+3. Upload your `plasmid_reference_sequence.fasta` and the plasmidsaurus fastq (ex: `nanopore_raw.fastq`) to your Longleaf directory.
 
 Based on the above, edit the **four required parameters** in the `realign_fasta.sh` file:
 ```
 ref_fasta="./plasmid_reference_sequence.fasta"
-ref_query="agcggtggccgaaaaacgggcggaaacccttgcaaatgctggattttctgcctgtggaca"
 plasmid_length=29000
 fastq_file="./nanopore_raw.fastq"
 ```
