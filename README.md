@@ -6,8 +6,18 @@ Raw plasmidsaurus reads have multiple start locations even though the original m
 
 ## Quick Start:
 
-Clone the script into a new directory in Longleaf.
+Clone the script into a new directory in your pine directory of Longleaf:
 
+Username: `jsmith1`, with plasmid project name `new_plasmid`
+
+```
+cd /pine/scr/[j]/[s]/[jsmith1]
+
+mkdir ./[new_plasmid]
+cd ./[new_plasmid]
+
+git clone https://github.com/DuronioLab/realign_nanopore.git
+```
 ### Collect/Generate neccessary files/parameters
 
 1. Generate a `plasmid_reference_sequence.fasta` file in your favorite plasmid editor. The linear sequence should start and end in vector, thus having the approximate layout: [1/2 vector]-[insert(s)]-[1/2 vector].
