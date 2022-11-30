@@ -18,6 +18,7 @@ cd ./[new_plasmid]
 
 git clone https://github.com/DuronioLab/realign_nanopore.git
 ```
+
 ### Collect/Generate neccessary files/parameters
 
 1. Generate a `plasmid_reference_sequence.fasta` file in your favorite plasmid editor. The linear sequence should start and end in vector, thus having the approximate layout: [1/2 vector]-[insert(s)]-[1/2 vector].
@@ -25,6 +26,12 @@ git clone https://github.com/DuronioLab/realign_nanopore.git
 2. Determine the expected plasmid length, `plasmid_length`
 
 3. Upload your `plasmid_reference_sequence.fasta` and the plasmidsaurus fastq (ex: `nanopore_raw.fastq`) to your Longleaf directory.
+
+If you have multiple fastq files, concatinate them and use the combined file for subsequent steps.
+
+```
+cat file1.fastq file2.fastq > file_concat.fastq
+```
 
 Based on the above, edit the **four required parameters** in the `realign_fasta.sh` file:
 ```
