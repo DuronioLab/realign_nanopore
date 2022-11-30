@@ -16,7 +16,7 @@ cd /pine/scr/[j]/[s]/[jsmith1]
 mkdir ./[new_plasmid]
 cd ./[new_plasmid]
 
-git clone https://github.com/DuronioLab/realign_nanopore.git
+git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign_nanopore/.git && mv ./realign_nanopore/* ./ && rm -r ./realign_nanopore
 ```
 
 ### Collect/Generate neccessary files/parameters
