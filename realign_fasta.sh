@@ -6,40 +6,40 @@
 #SBATCH --mem=16g
 
 ########################################################################
-#                    Change these 3 parameters                         #
+#                    Change this parameter!!                           #
+#        plasmid_length = expected length of plasmid in bp.            #
 ########################################################################
 
-ref_fasta="./plasmid_reference_sequence.fasta"
-plasmid_length=29000
-fastq_file="./nanopore_raw.fastq"
-
-# ref_fasta = an accurate ref sequence for your plasmid with layout: [1/2 vector]-[insert]-[1/2 vector].
-# plasmid_length = expected length of plasmid in bp.
-# fastq_file = the fastq results from plasmidaurus.
+plasmid_length=72873
 
 #######################################################################
-
 # Make sure script is executable with:
 # chmod u+x ./realign_fasta.sh
 
 #Run the script with:
 # sbatch --wrap="sh realign_fasta.sh"
-
 #######################################################################
 
+#Concatenate all FASTQ files together
+cat ./*.fastq > concat.fastq
 
-#Set up query.fasta
+#Get the FASTA file
+
+ref_fasta="*.f*a"
+echo "Found FASTA reference file" ${ref_fasta}
+
+#Rename each FASTQ read and set up query.fasta
 module purge && module load seqkit
-seqkit replace -p .+ -r "seq_{nr}" ${fastq_file} > renamed_reads.fastq
 
-seqkit subseq -r 1:60 ${ref_fasta} > query.fasta
+seqkit replace --quiet -p .+ -r "seq_{nr}" concat.fastq > renamed_reads.fastq
+seqkit subseq --quiet -r 1:60 ${ref_fasta} > query.fasta
 
-#Filter raw fastq for size and convert to fasta
-min=$((plasmid_length*90/100))
-max=$((plasmid_length*110/100))
+#Filter raw fastq for size (+- 5% predicted size) and convert to FASTA
+min=$((plasmid_length*95/100))
+max=$((plasmid_length*105/100))
 
-seqkit seq --min-len $min --max-len $max renamed_reads.fastq -o out.fastq
-seqkit fq2fa out.fastq -o out.fasta
+seqkit seq --quiet --min-len $min --max-len $max renamed_reads.fastq -o out.fastq
+seqkit fq2fa --quiet out.fastq -o out.fasta
 
 
 #Search for reference query
@@ -57,19 +57,22 @@ for f in "${File[@]}"
 do
 new_start=$(grep -w ${f} output.psl | awk '{print $16}')
 echo ${f} > fname.txt
-seqkit grep -n -f fname.txt out.fasta > temp.fasta
-seqkit restart -i ${new_start} temp.fasta >> plasmid_restart.fasta
+seqkit grep --quiet -n -f fname.txt out.fasta > temp.fasta
+seqkit restart --quiet -i ${new_start} temp.fasta >> plasmid_restart.fasta
 done
 
 
 #Generate the consensus sequence
 module purge && module load medaka
+medaka_consensus -i ./plasmid_restart.fasta -d ${ref_fasta} -t 1 -o plasmid_restart_consensus
 
-medaka_consensus -i ./plasmid_restart.fasta -d $ref_fasta -t 1 -o plasmid_restart_consensus
-
+echo "Removing Files..."
 
 #Remove temp files
 rm ./renamed_reads.fastq
+rm ./concat.fastq
+rm ./*.fai
+rm ./*.mmi
 rm ./query.fasta
 rm ./out.fastq
 rm ./out.fasta
