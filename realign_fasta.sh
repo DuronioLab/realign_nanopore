@@ -30,13 +30,15 @@ fastq_file="./nanopore_raw.fastq"
 
 #Set up query.fasta
 module purge && module load seqkit
-seqkit subseq -r 1:60 > query.fasta
+seqkit replace -p .+ -r "seq_{nr}" ${fastq_file} > renamed_reads.fastq
+
+seqkit subseq -r 1:60 ${ref_fasta} > query.fasta
 
 #Filter raw fastq for size and convert to fasta
 min=$((plasmid_length*90/100))
 max=$((plasmid_length*110/100))
 
-seqkit seq --min-len $min --max-len $max $fastq_file -o out.fastq
+seqkit seq --min-len $min --max-len $max renamed_reads.fastq -o out.fastq
 seqkit fq2fa out.fastq -o out.fasta
 
 
@@ -67,6 +69,7 @@ medaka_consensus -i ./plasmid_restart.fasta -d $ref_fasta -t 1 -o plasmid_restar
 
 
 #Remove temp files
+rm ./renamed_reads.fastq
 rm ./query.fasta
 rm ./out.fastq
 rm ./out.fasta
