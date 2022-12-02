@@ -6,6 +6,8 @@ Raw plasmidsaurus reads have multiple start locations even though the original m
 
 ## Quick Start:
 
+**Note:** I recommend interfacing with Longleaf using a program with a graphic file explorer, such as MobaXterm for Windows
+
 Clone the script into a new directory in your pine directory of Longleaf:
 
 (Substitute with your own information; example username: `jsmith1`, with example plasmid project name `new_plasmid`)
