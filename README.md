@@ -40,10 +40,6 @@ plasmid_length=78000
 ```
 
 ### Run the script
-Make sure the script is executable with:
-```
-chmod u+x ./realign_fasta.sh
-```
 
 Run the script with:
 ```
