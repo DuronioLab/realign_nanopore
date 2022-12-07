@@ -26,18 +26,32 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 
 ### Collect/Generate neccessary files/parameters
 
-1. Generate a reference FASTA file for your plasmid in your favorite plasmid editor. The linear sequence should start and end in vector, thus having the approximate layout: [1/2 vector]-[insert(s)]-[1/2 vector].
-
+1. Generate a reference FASTA file for your plasmid in your favorite plasmid editor.
+   - The linear sequence should start and end in vector, thus having the approximate layout: [1/2 vector]-[insert(s)]-[1/2 vector].
 2. Upload your plasmid reference sequence FASTA file.
 
 3. Upload your raw plasmidsaurus FASTQ file(s). Multiple may be uploaded as long as they are named differently.
 
 4. Determine the expected plasmid length, `plasmid_length`
 
-5. Edit the **one required parameter: plasmid length** in the `realign_fasta.sh` file:
+5. **Edit the parameter: plasmid length** in the `realign_fasta.sh` file:
+
 ```
 plasmid_length=78000
 ```
+
+After uploading your FASTA and FASTQ files and copying the scripts from github, your file directory should look like:
+```
+pine/scr/j/s/jsmith1/
+├─ new_plasmid/
+│  ├─ reference_plasmid.fasta
+│  ├─ raw_reads.fastq
+│  ├─ README.md
+│  ├─ realign_fasta.sh
+│  ├─ read_histogram.R
+```
+**note: you may have more than one FASTQ file, but may only have one reference FASTA file**
+
 
 ### Run the script
 
@@ -47,10 +61,10 @@ sbatch --wrap="sh realign_fasta.sh"
 ```
 
 ### Collect the results
-Depending on the number of reads, the script should complete within 15 minutes and generate a subdirectory '/plasmid_restart_consensus' (or '/medaka') with the primary results:
-1. `consensus.fasta` is the called consensus sequence to be viewed in a plasmid editor against the reference sequence.
-2. `calls_to_draft.bam` contains the aligned reads for visualization in a program like IGV to examine any potential mutations.
-3. `calls_to_draft.bam.bai` indexed bam required for IGV visualization.
+Depending on the number of reads, the script should complete within 30 minutes and generate several results (named after your reference file):
+1. `[reference]_consensus.fasta` is the called consensus sequence to be viewed in a plasmid editor against the reference sequence.
+2. `[reference]_reads.bam` contains the aligned reads for visualization in a program like IGV to examine any potential mutations.
+3. `[reference]_reads.bam.bai` indexed bam required for IGV visualization.
+4. `[reference]_restart.fastq` are the re-started, size-filtered FASTQ reads.
+5. `Filtered_read_lengths.pdf` is a histogram of the read lengths filtered out by the script. Useful to check size filter stringincy.
 
-A secondary result is in the original folder:
-1. `plasmid_restart.fasta` contains the restarted reads in FASTA format with their original FASTQ names.
