@@ -1,4 +1,4 @@
-# realign_nanopore script
+# Re-start Nanopore reads and generate a consensus sequence for repetitive plasmids
 
 ## Author: Markus Nevil
 
