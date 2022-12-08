@@ -21,7 +21,7 @@ cd ./[new_plasmid]
 
 Run the following command to copy the script into the current directory.
 ```
-git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign_nanopore/.git && mv ./realign_nanopore/* ./ && rm -r ./realign_nanopore
+git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign_nanopore/.git && mv ./realign_nanopore/* ./ && rm -r ./realign_nanopore && rm -r ./images
 ```
 
 ### Collect/Generate neccessary files/parameters
