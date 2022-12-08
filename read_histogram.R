@@ -26,5 +26,6 @@ close(file(file_path))
 
 # Create a histogram of the DNA sequence lengths
 pdf("Filtered_read_lengths.pdf")
-hist(sequence_lengths, xlab = "Size in bp", ylab = "Number of Reads", main = "Filtered Read length histogram")
+hist(sequence_lengths, xlab = "Size in bp", ylab = "Number of Reads", main = "Filtered Read length histogram",breaks=100)
 dev.off()
+
