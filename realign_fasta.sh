@@ -44,9 +44,9 @@ module purge && module load seqkit
 seqkit replace --quiet -p .+ -r "seq_{nr}" concat.fastq > renamed_reads.fastq
 seqkit subseq --quiet -r 1:60 ${ref_fasta} > query.fasta
 
-#Filter raw fastq for size (+- 3% predicted size) and convert to FASTA
-min=$((plasmid_length*97/100))
-max=$((plasmid_length*103/100))
+#Filter raw fastq for size (+- 2% predicted size) and convert to FASTA
+min=$((plasmid_length*98/100))
+max=$((plasmid_length*102/100))
 
 seqkit seq --quiet --min-len $min --max-len $max renamed_reads.fastq -o out.fastq
 seqkit fq2fa --quiet out.fastq -o out.fasta
