@@ -28,14 +28,13 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 
 1. Generate a reference FASTA file for your plasmid in your favorite plasmid editor.
    - The linear sequence should start and end in vector, thus having the approximate layout: [1/2 vector]-[insert(s)]-[1/2 vector]:
+   
    ![Like This](https://github.com/DuronioLab/realign_nanopore/blob/main/images/githubAsset%202small.png?raw=true)
 2. Upload your plasmid reference sequence FASTA file.
 
 3. Upload your raw plasmidsaurus FASTQ file(s). Multiple may be uploaded as long as they are named differently.
 
-4. Determine the expected plasmid length, `plasmid_length`
-
-5. **Edit the parameter: plasmid length** in the `realign_fasta.sh` file:
+4. Determine the expected plasmid length, open the `realign_fasta.sh` file and edit the `plasmid_length` parameter:
 
 ```
 plasmid_length=78000
@@ -68,4 +67,5 @@ Depending on the number of reads, the script should complete within 30 minutes a
 3. `[reference]_reads.bam.bai` indexed bam required for IGV visualization.
 4. `[reference]_restart.fastq` are the re-started, size-filtered FASTQ reads.
 5. `Filtered_read_lengths.pdf` is a histogram of the read lengths filtered out by the script. Useful to check size filter stringincy.
+6. `Restart_Alignment.txt` is an alignment of the beginnings of the first few reads. Useful to ensure the reads are "re-starting" properly
 
