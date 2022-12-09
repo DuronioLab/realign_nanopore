@@ -40,7 +40,7 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 plasmid_length=78000
 ```
 
-After uploading your FASTA and FASTQ files and copying the scripts from github, your file directory should look like:
+After uploading your **FASTA and FASTQ files** and copying the scripts from github, your file directory should look like:
 ```
 pine/scr/j/s/jsmith1/
 ├─ new_plasmid/
@@ -49,6 +49,7 @@ pine/scr/j/s/jsmith1/
 │  ├─ README.md
 │  ├─ realign_fasta.sh
 │  ├─ read_histogram.R
+│  ├─ restart_consensus.R
 ```
 **note: you may have more than one FASTQ file, but may only have one reference FASTA file**
 
