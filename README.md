@@ -33,8 +33,9 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 2. Upload your plasmid reference sequence FASTA file.
 
 3. Upload your raw plasmidsaurus FASTQ file(s). Multiple may be uploaded as long as they are named differently.
-   -**DO NOT** add these files to the [/scripts] folder that was automatically generated.
+   - **DO NOT** add these files to the [/scripts] folder that was automatically generated.
 
+### Check that the required files and folders are present.
 After uploading your **FASTA and FASTQ files** and copying the scripts from github, your file directory should look like:
 ```
 pine/scr/j/s/jsmith1/
@@ -53,7 +54,7 @@ pine/scr/j/s/jsmith1/
 
 ### Run the script
 
-Run the script with:
+Copy and paste the following into the terminal:
 ```
 sbatch --time=5:00:00 --mem=16g --ntasks=2 --wrap="sh ./scripts/realign_fasta.sh"
 ```
