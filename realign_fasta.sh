@@ -6,13 +6,6 @@
 #SBATCH --mem=16g
 
 ########################################################################
-#                    Change this parameter!!                           #
-#        plasmid_length = expected length of plasmid in bp.            #
-########################################################################
-
-#plasmid_length=62331
-
-########################################################################
 # Run the script with:                                                 #
 # sbatch --wrap="sh realign_fasta.sh"                                  #
 ########################################################################
@@ -96,11 +89,11 @@ module purge && module load r
 
 printf "\nGenerating read length histogram\n"
 
-Rscript read_histogram.R ${ref_basename}_restart.fastq
+Rscript ./scripts/read_histogram.R ${ref_basename}_restart.fastq
 
-Rscript restart_consensus.R plasmid_restart.fasta
+Rscript ./scripts/restart_consensus.R plasmid_restart.fasta
 
-Rscript subseq_search.R ${ref_fasta}
+Rscript ./scripts/subseq_search.R ${ref_fasta}
 
 printf "\nRe-naming output Files..."
 mv ./${out_folder}/consensus.fasta ./${ref_basename}_consensus.fasta
@@ -124,5 +117,7 @@ rm ./output.psl
 rm ./blat_names.txt
 rm ./fname.txt
 rm ./shortened.fasta
+
+mv ./*.out ./scripts
 
 tar cvzf results.tar.gz *.pdf *_consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed
