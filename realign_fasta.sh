@@ -10,7 +10,7 @@
 #        plasmid_length = expected length of plasmid in bp.            #
 ########################################################################
 
-plasmid_length=62331
+#plasmid_length=62331
 
 ########################################################################
 # Run the script with:                                                 #
@@ -24,8 +24,10 @@ files=$(find . -maxdepth 1 -name "*.fastq" -not -name "*_restart.fastq")
 # Concatenate the found files
 cat $files > concat.fastq
 
-#Get the FASTA file
+#Get the FASTA file and its length
 ref_fasta=$(find . -name "*.f*a" -print)
+
+plasmid_length=$(tail -n +2 ${ref_fasta} | tr -d ' \n' | wc -m)
 
 # Remove the file extension from the file name
 name=$(echo ${ref_fasta})
@@ -33,6 +35,8 @@ ref_basename="${name%.*}"
 
 echo "Found FASTA reference file" ${ref_fasta}
 echo "The base that will be used for naming is " ${ref_basename}
+echo "The size of the reference plasmid is "${plasmid_length}
+echo
 
 #Rename each FASTQ read and set up query.fasta
 printf "\n Renaming FASTQ reads and generating FASTA file\n"
@@ -44,6 +48,8 @@ seqkit subseq --quiet -r 1:60 ${ref_fasta} > query.fasta
 #Filter raw fastq for size (+- 3% predicted size) and convert to FASTA
 min=$((plasmid_length*97/100))
 max=$((plasmid_length*103/100))
+
+printf "\nTaking all reads that are > "${min}" and < "${max}" basepairs \n"
 
 seqkit seq --quiet --min-len $min --max-len $max renamed_reads.fastq -o out.fastq
 seqkit fq2fa --quiet out.fastq -o out.fasta
@@ -94,6 +100,8 @@ Rscript read_histogram.R ${ref_basename}_restart.fastq
 
 Rscript restart_consensus.R plasmid_restart.fasta
 
+Rscript subseq_search.R ${ref_fasta}
+
 printf "\nRe-naming output Files..."
 mv ./${out_folder}/consensus.fasta ./${ref_basename}_consensus.fasta
 mv ./${out_folder}/calls_to_draft.bam ./${ref_basename}_reads.bam
@@ -117,3 +125,4 @@ rm ./blat_names.txt
 rm ./fname.txt
 rm ./shortened.fasta
 
+tar cvzf results.tar.gz *.pdf *_consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed
