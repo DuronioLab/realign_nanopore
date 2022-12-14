@@ -7,12 +7,13 @@ wd <- getwd()
 # Construct the path to the file using the current working directory
 file_path <- file.path(wd, args[1])
 
-print(file_path)
-
 # Read the input file
-data <- read.table(file(file_path), sep = "\t")
+input_file <- file(file_path)
+data <- read.table(input_file, sep = "\t")
 data2 <- as.data.frame(data)
 data3 <- data.frame()
+
+#close(input_file)
 
 # Initialize an empty dataframe to hold the selected rows
 selected_rows <- data.frame()
@@ -48,7 +49,8 @@ if (!requireNamespace("BiocManager", quietly=TRUE)){
   install.packages("BiocManager", lib = Sys.getenv("R_LIBS_USER"), quiet=TRUE, repos = "https://cran.rstudio.com/")
   }
 
-BiocManager::install("msa", update = FALSE, lib = Sys.getenv("R_LIBS_USER"), quiet=TRUE, force=TRUE)
+BiocManager::install("msa", update = FALSE, lib = Sys.getenv("R_LIBS_USER"), quiet=TRUE, ask=FALSE)
+#BiocManager::install("msa", update = FALSE, lib = Sys.getenv("R_LIBS_USER"), force=TRUE)
 
 library(msa, quiet=TRUE)
 
