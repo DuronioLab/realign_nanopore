@@ -21,7 +21,7 @@ cd ./[new_plasmid]
 
 Run the following command to copy the script into the current directory.
 ```
-git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign_nanopore/.git && mv ./realign_nanopore/* ./ && rm -r ./realign_nanopore && rm -r ./images
+git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign_nanopore/.git && mkdir ./scripts && mv ./realign_nanopore/* ./scripts/ && rm -r ./realign_nanopore && rm -r ./images
 ```
 
 ### Collect/Generate neccessary files/parameters
@@ -34,22 +34,18 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 
 3. Upload your raw plasmidsaurus FASTQ file(s). Multiple may be uploaded as long as they are named differently.
 
-4. Determine the expected plasmid length, open the `realign_fasta.sh` file and edit the `plasmid_length` parameter:
-
-```
-plasmid_length=78000
-```
-
 After uploading your **FASTA and FASTQ files** and copying the scripts from github, your file directory should look like:
 ```
 pine/scr/j/s/jsmith1/
 ├─ new_plasmid/
 │  ├─ reference_plasmid.fasta
 │  ├─ raw_reads.fastq
-│  ├─ README.md
-│  ├─ realign_fasta.sh
-│  ├─ read_histogram.R
-│  ├─ restart_consensus.R
+│  ├─ scripts/
+│  │  ├─ README.md
+│  │  ├─ realign_fasta.sh
+│  │  ├─ read_histogram.R
+│  │  ├─ restart_consensus.R
+│  │  ├─ subseq_search.R
 ```
 **note: you may have more than one FASTQ file, but may only have one reference FASTA file**
 
@@ -58,7 +54,7 @@ pine/scr/j/s/jsmith1/
 
 Run the script with:
 ```
-sbatch --wrap="sh realign_fasta.sh"
+sbatch --time=5:00:00 --mem=16g --ntasks=2 --wrap="sh ./scripts/realign_fasta.sh"
 ```
 
 ### Collect the results
