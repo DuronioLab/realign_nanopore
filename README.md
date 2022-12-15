@@ -66,7 +66,7 @@ sbatch --time=5:00:00 --mem=16g --ntasks=2 --wrap="sh ./scripts/realign_fasta.sh
 
 Depending on the number of reads, the script should complete within 30 minutes and generate several results (named after your reference file). The output files are moved into the `results/` folder, but a compressed version of this folder is included:
 
-1. `results.gz` contains all the results compressed into one file.
+1. `results.tar.gz` contains all the results compressed into one file.
 ------
 Within the `results/` folder:
 
