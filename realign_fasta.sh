@@ -102,7 +102,7 @@ mv ./${out_folder}/calls_to_draft.bam.bai ./${ref_basename}_reads.bam.bai
 
 printf "\nRemoving Files..."
 
-#Remove temp files
+#Remove temp files and do some cleaning up
 rm ./out.fasta
 rm ./temp.fasta
 rm ./query.fasta
@@ -124,5 +124,4 @@ mkdir ./results
 
 mv *.pdf *consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed ./results
 cp ${ref_fasta} ./results
-
-gzip --keep ./results
+tar -zcvf results.tar.gz ./results
