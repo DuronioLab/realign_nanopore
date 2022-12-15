@@ -120,4 +120,9 @@ rm ./shortened.fasta
 
 mv ./*.out ./scripts
 
-tar cvzf results.tar.gz *.pdf *_consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed
+mkdir ./results
+
+mv *.pdf *consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed ./results
+cp ${ref_fasta} ./results
+
+gzip --keep ./results
