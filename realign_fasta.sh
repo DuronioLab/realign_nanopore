@@ -5,10 +5,10 @@
 #SBATCH --time=5:00:00
 #SBATCH --mem=16g
 
-########################################################################
-# Run the script with:                                                 #
-# sbatch --wrap="sh realign_fasta.sh"                                  #
-########################################################################
+##########################################################################################
+#   Run the script with:                                                                 #
+#   sbatch --time=5:00:00 --mem=16g --ntasks=2 --wrap="sh ./scripts/realign_fasta.sh"    #
+##########################################################################################
 
 ## Concatenate all FASTQ files together
 # Find all files in the current directory with the ".fastq" extension
