@@ -24,42 +24,46 @@ Run the following command to copy the script into the current directory.
 git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign_nanopore/.git && mkdir ./scripts && mv ./realign_nanopore/* ./scripts/ && rm -r ./realign_nanopore && rm -r ./scripts/images
 ```
 
-### Collect/Generate neccessary files/parameters
+## Collect/Generate neccessary files/parameters
 
-1. Generate a reference FASTA file for your plasmid in your favorite plasmid editor.
+1. [ ] Generate a reference FASTA file for your plasmid in your favorite plasmid editor.
    - The linear sequence should start and end in vector, thus having the approximate layout: [1/2 vector]-[insert(s)]-[1/2 vector]:
    
    ![Like This](https://github.com/DuronioLab/realign_nanopore/blob/main/images/githubAsset%202small.png?raw=true)
-2. Upload your plasmid reference sequence FASTA file.
+2. [ ] Upload your plasmid reference sequence FASTA file.
 
-3. Upload your raw plasmidsaurus FASTQ file(s). Multiple may be uploaded as long as they are named differently.
+3. [ ] Upload your raw plasmidsaurus FASTQ file(s). Multiple may be uploaded as long as they are named differently.
    - **DO NOT** add these files to the [/scripts] folder that was automatically generated.
 
 ### Check that the required files and folders are present.
+
 After uploading your **FASTA and FASTQ files** and copying the scripts from github, your file directory should look like:
-```
+
+```bash
 pine/scr/j/s/jsmith1/
-├─ new_plasmid/
-│  ├─ reference_plasmid.fasta
-│  ├─ raw_reads.fastq
-│  ├─ scripts/
-│  │  ├─ README.md
-│  │  ├─ realign_fasta.sh
-│  │  ├─ read_histogram.R
-│  │  ├─ restart_consensus.R
-│  │  ├─ subseq_search.R
+└──new_plasmid/
+   ├─ reference_plasmid.fasta
+   ├─ raw_reads.fastq
+   └──scripts/
+      ├─ README.md
+      ├─ realign_fasta.sh
+      ├─ read_histogram.R
+      ├─ restart_consensus.R
+      └──subseq_search.R
 ```
-**note: you may have more than one FASTQ file, but may only have one reference FASTA file**
+
+**note: you may have *more than one* FASTQ file, but may only have *one* reference FASTA file**
 
 
-### Run the script
+## Run the script
 
 Copy and paste the following into the terminal:
 ```
 sbatch --time=5:00:00 --mem=16g --ntasks=2 --wrap="sh ./scripts/realign_fasta.sh"
 ```
 
-### Collect the results
+## Collect the results
+
 Depending on the number of reads, the script should complete within 30 minutes and generate several results (named after your reference file):
 1. `results.tar.gz` contains all the results compressed into one file.
 ------
