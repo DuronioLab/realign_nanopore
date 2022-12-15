@@ -26,13 +26,13 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 
 ## Collect/Generate neccessary files/parameters
 
-1. [ ] Generate a reference FASTA file for your plasmid in your favorite plasmid editor.
+1. Generate a reference FASTA file for your plasmid in your favorite plasmid editor.
    - The linear sequence should start and end in vector, thus having the approximate layout: [1/2 vector]-[insert(s)]-[1/2 vector]:
    
    ![Like This](https://github.com/DuronioLab/realign_nanopore/blob/main/images/githubAsset%202small.png?raw=true)
-2. [ ] Upload your plasmid reference sequence FASTA file.
+2. Upload your plasmid reference sequence FASTA file.
 
-3. [ ] Upload your raw plasmidsaurus FASTQ file(s). Multiple may be uploaded as long as they are named differently.
+3. Upload your raw plasmidsaurus FASTQ file(s). Multiple may be uploaded as long as they are named differently.
    - **DO NOT** add these files to the [/scripts] folder that was automatically generated.
 
 ### Check that the required files and folders are present.
