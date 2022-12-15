@@ -123,5 +123,5 @@ mv ./*.out ./scripts
 mkdir ./results
 
 mv *.pdf *consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed ./results
-cp ${ref_fasta} ./results
+cp ${ref_fasta} ./results/${ref_basename}_reference.fasta
 zip -r ${ref_basename}_results.zip ./results
