@@ -64,9 +64,12 @@ sbatch --time=5:00:00 --mem=16g --ntasks=2 --wrap="sh ./scripts/realign_fasta.sh
 
 ## Collect the results
 
-Depending on the number of reads, the script should complete within 30 minutes and generate several results (named after your reference file):
-1. `results.tar.gz` contains all the results compressed into one file.
+Depending on the number of reads, the script should complete within 30 minutes and generate several results (named after your reference file). The output files are moved into the `results/` folder, but a compressed version of this folder is included:
+
+1. `results.gz` contains all the results compressed into one file.
 ------
+Within the `results/` folder:
+
 2. `[reference]_consensus.fasta` is the called consensus sequence to be viewed in a plasmid editor against the reference sequence.
 3. `[reference]_reads.bam` contains the aligned reads for visualization in a program like IGV to examine any potential mutations.
 4. `[reference]_reads.bam.bai` indexed bam required for IGV visualization.
