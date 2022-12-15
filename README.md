@@ -2,7 +2,7 @@
 
 ## Author: Markus Nevil
 
-Raw plasmidsaurus reads have multiple start locations even though the original molecules were circular. This script "restarts" each read using BLAT to search for sequence that should only appear in the vector. By aligning these restarted reads to a reference sequence, a consensus sequence can be generated and scanned for mutations. This is usueful for vectors with multiple repeats of the same sequence, which normally obfuscates which repeat contains mutations.
+Raw plasmidsaurus reads have multiple start locations even though the original molecules were circular. This script "restarts" each read using BLAT to search for the user-definied origin of the vector. By aligning these restarted reads to a reference sequence, a consensus sequence can be generated and scanned for mutations. This is usueful for vectors with multiple repeats of the same sequence, which normally obfuscates which repeat contains mutations.
 
 ## Quick Start:
 
@@ -73,6 +73,6 @@ Depending on the number of reads, the script should complete within 30 minutes a
 5. `[reference]_restart.fastq` are the re-started, size-filtered FASTQ reads.
 6. `Filtered_read_lengths.pdf` is a histogram of the read lengths filtered out by the script. Useful to check size filter stringincy.
 7. `Restart_Alignment.txt` is an alignment of the beginnings of the first few reads. Useful to ensure the reads are "re-starting" properly
-8. `homopolymer.bed` contains the predicted homopolymer tracts in the reference sequence. Useful to view in IGV to explain sequence errors.
-9. `methylation.bed` contains the predicted *E. coli* methylated sites in the reference sequence. Useful to view in IGV to explain sequence errors. 
+8. `homopolymer.bed` contains the predicted homopolymer tracts in the reference sequence. Useful for IGV to explain sequence errors.
+9. `methylation.bed` contains the predicted *E. coli* methylated sites in the reference sequence. Useful for IGV to explain sequence errors. 
 
