@@ -124,4 +124,4 @@ mkdir ./results
 
 mv *.pdf *consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed ./results
 cp ${ref_fasta} ./results
-tar -zcvf results.tar.gz ./results
+zip -r ${ref_basename}_results.zip ./results
