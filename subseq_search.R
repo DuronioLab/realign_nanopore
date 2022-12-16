@@ -20,7 +20,7 @@ dna_sequence = file_text[2:length(file_text)]
 dna_sequence = paste(dna_sequence, collapse="")
 
 # search the DNA sequence for the specified subsequences
-subsequence_list = c("GATC", "CCAGG", "CCTGG")
+subsequence_list = c("GATC", "CCAGG", "CCTGG", "AAC.{6}GTGC")
 
 # create a dataframe to store the found subsequences
 df = data.frame(header=character(), start_index=integer(), end_index=integer(), subsequence_num=character())
@@ -28,7 +28,11 @@ df = data.frame(header=character(), start_index=integer(), end_index=integer(), 
 for (subsequence in subsequence_list) {
   start_index = gregexpr(subsequence, dna_sequence, ignore.case = TRUE)[[1]] - 1
   end_index = start_index + nchar(subsequence)
+  if(subsequence == "AAC.{6}GTGC"}{
+    subsequence_num = paste("AACNNNNNNGTGC_", 1:length(start_index), sep="")
+    }else{
   subsequence_num = paste(subsequence, "_", 1:length(start_index), sep="")
+    }
   df = rbind(df, data.frame(header=header, start_index=start_index, end_index=end_index, subsequence_num=subsequence_num))
 }
 
