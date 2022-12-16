@@ -28,7 +28,7 @@ df = data.frame(header=character(), start_index=integer(), end_index=integer(), 
 for (subsequence in subsequence_list) {
   start_index = gregexpr(subsequence, dna_sequence, ignore.case = TRUE)[[1]] - 1
   end_index = start_index + nchar(subsequence)
-  if(subsequence == "AAC.{6}GTGC"}{
+  if(subsequence == "AAC.{6}GTGC"){
     subsequence_num = paste("AACNNNNNNGTGC_", 1:length(start_index), sep="")
     }else{
   subsequence_num = paste(subsequence, "_", 1:length(start_index), sep="")
