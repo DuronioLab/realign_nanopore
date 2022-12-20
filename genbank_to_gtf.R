@@ -124,7 +124,7 @@ for(i in 1:nrow(saved)){
   }
 }
 
-gtf_filename <- paste(seq_name, ".gtf", sep = "")
+gtf_filename <- paste(seq_name, "_annotations.gtf", sep = "")
 write.table(gtf, sep="\t", col.names = FALSE, row.names = FALSE, file = gtf_filename, quote = FALSE)
 
 
