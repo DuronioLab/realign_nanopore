@@ -19,9 +19,8 @@ cat $files > concat.fastq
 
 # Get Genebank file (if there is one)
 
-FILE=./*.gb
-if test -f "$FILE"; then
-  ref_genbank=$(find . -name "*.gb" -print)
+ref_genbank=$(find . -name "*.gb" -print)
+if test -f "$ref_genbank"; then
   module load r
   Rscript ./scripts/genbank_to_gtf.R ${ref_genbank}
 fi
