@@ -17,6 +17,16 @@ files=$(find . -maxdepth 1 -name "*.fastq" -not -name "*_restart.fastq")
 # Concatenate the found files
 cat $files > concat.fastq
 
+# Get Genebank file (if there is one)
+
+FILE=./*.gb
+if test -f "$FILE"; then
+  ref_genbank=$(find . -name "*.gb" -print)
+  module load r
+  Rscript ./scripts/genbank_to_gtf.R ${ref_genbank}
+fi
+
+
 #Get the FASTA file and its length
 ref_fasta=$(find . -name "*.f*a" -print)
 
@@ -122,6 +132,6 @@ mv ./*.out ./scripts
 
 mkdir ./results
 
-mv *.pdf *consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed ./results
+mv *.pdf *consensus.fasta *.bam *.bai *_restart.fastq *_Alignment.txt *.bed *.gtf ./results
 cp ${ref_fasta} ./results/${ref_basename}_reference.fasta
 zip -r ${ref_basename}_results.zip ./results
