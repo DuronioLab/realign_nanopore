@@ -28,22 +28,22 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 
 1. Generate a reference FASTA file for your plasmid in your favorite plasmid editor.
    - The linear sequence should start and end in vector, thus having the approximate layout:
-   - [1/2 vector]-[insert(s)]-[1/2 vector]:
    
    ![Like This](https://github.com/DuronioLab/realign_nanopore/blob/main/images/githubAsset%202small.png?raw=true)
-2. Upload your plasmid reference sequence FASTA file.
+2. Upload your plasmid reference sequence as a FASTA file or a Genbank file.
+   - Although not required, uploading a Genbank file will generate a GTF of the genes in your sequence for viewing in IGV.
 
 3. Upload your raw Nanopore FASTQ file(s). Multiple may be uploaded as long as they are named differently.
    - **DO NOT** add these files to the `scripts/` folder that was automatically generated.
 
 ### Check that the required files and folders are present.
 
-After uploading your **FASTA and FASTQ files** and copying the scripts from github, your file directory should look like:
+After uploading your **FASTA (or Genbank) and FASTQ files** and copying the scripts from github, your file directory should look like:
 
 ```bash
 pine/scr/j/s/jsmith1/
 └──new_plasmid/
-   ├─ reference_plasmid.fasta
+   ├─ reference_plasmid.fasta or .gb
    ├─ raw_reads.fastq
    └──scripts/
       ├─ README.md
@@ -72,11 +72,20 @@ Depending on the number of reads, the script should complete within 30 minutes a
 Within the `results/` folder:
 
 2. `[reference]_consensus.fasta` is the called consensus sequence to be viewed in a plasmid editor against the reference sequence.
+
+Files to more closely examine the results in IGV:
+
 3. `[reference]_reads.bam` contains the aligned reads for visualization in a program like IGV to examine any potential mutations.
 4. `[reference]_reads.bam.bai` indexed bam required for IGV visualization.
-5. `[reference]_restart.fastq` are the re-started, size-filtered FASTQ reads.
-6. `Filtered_read_lengths.pdf` is a histogram of the read lengths filtered out by the script. Useful to check size filter stringincy.
-7. `Restart_Alignment.txt` is an alignment of the beginnings of the first few reads. Useful to ensure the reads are "re-starting" properly
-8. `homopolymer.bed` contains the predicted homopolymer tracts in the reference sequence. Useful for IGV to explain sequence errors.
-9. `methylation.bed` contains the predicted *E. coli* methylated sites in the reference sequence. Useful for IGV to explain sequence errors. 
+5. `[reference]_reference.gtf` contains 'features' to be viewed in IGV. Only created if a Genbank file was provided.
+6. `homopolymer.bed` contains the predicted homopolymer tracts in the reference sequence. Useful for IGV to explain sequence errors.
+7. `methylation.bed` contains the predicted *E. coli* methylated sites in the reference sequence. Useful for IGV to explain sequence errors.
+
+Extra files that may be useful:
+
+8. `[reference]_restart.fastq` are the re-started, size-filtered FASTQ reads.
+9. `[reference]_reference.fasta` is a moved-and-renamed FASTA reference file: same as input.
+10. `Filtered_read_lengths.pdf` is a histogram of the read lengths filtered out by the script. Useful to check size filter stringincy.
+11. `Restart_Alignment.txt` is an alignment of the beginnings of the first few reads. Useful to ensure the reads are "re-starting" properly
+
 
