@@ -89,3 +89,8 @@ Extra files that may be useful:
 11. `Restart_Alignment.txt` is an alignment of the beginnings of the first few reads. Useful to ensure the reads are "re-starting" properly
 
 
+## Notes
+
+1. An accurate reference FASTA is very important but not required. Minimap2 (the alignment program used) does a fair job of dealing with errors such as unexpected Indels, however it is unclear how much deviation it can take before outputting unexpected results.
+
+2. If a Genbank file is used, the resulting GTF will only be as accurate as the input. Currently, it is written to only scan for "CDS", "5'UTR", and "3'UTR". When creating the annotation (likely in Snapgene), be sure to mark features as these types rather than simply denoting it in their names. This will help prevent loss or misannotation.
