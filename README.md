@@ -75,16 +75,16 @@ Within the `results/` folder:
 
 Files to more closely examine the results in IGV:
 
-3. `[reference]_reads.bam` contains the aligned reads for visualization in a program like IGV to examine any potential mutations.
-4. `[reference]_reads.bam.bai` indexed bam required for IGV visualization.
-5. `[reference]_reference.gtf` contains 'features' to be viewed in IGV. Only created if a Genbank file was provided.
-6. `homopolymer.bed` contains the predicted homopolymer tracts in the reference sequence. Useful for IGV to explain sequence errors.
-7. `methylation.bed` contains the predicted *E. coli* methylated sites in the reference sequence. Useful for IGV to explain sequence errors.
+3. `[reference]_reference.fasta` is a moved-and-renamed FASTA reference file to be used as the genome in IGV.
+4. `[reference]_reads.bam` contains the aligned reads for visualization in IGV to examine any potential mutations.
+5. `[reference]_reads.bam.bai` indexed bam required for IGV visualization.
+6. `[reference]_annotations.gtf` contains 'features' to be viewed in IGV. Only created if a Genbank file was provided.
+7. `homopolymer.bed` contains the predicted homopolymer tracts in the reference sequence. Useful to explain sequence errors.
+8. `methylation.bed` contains the predicted *E. coli* methylated sites in the reference sequence. Useful to explain sequence errors.
 
 Extra files that may be useful:
 
-8. `[reference]_restart.fastq` are the re-started, size-filtered FASTQ reads.
-9. `[reference]_reference.fasta` is a moved-and-renamed FASTA reference file: same as input.
+9. `[reference]_restart.fastq` are the re-started, size-filtered FASTQ reads.
 10. `Filtered_read_lengths.pdf` is a histogram of the read lengths filtered out by the script. Useful to check size filter stringincy.
 11. `Restart_Alignment.txt` is an alignment of the beginnings of the first few reads. Useful to ensure the reads are "re-starting" properly
 
