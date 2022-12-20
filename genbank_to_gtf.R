@@ -127,3 +127,20 @@ for(i in 1:nrow(saved)){
 gtf_filename <- paste(seq_name, ".gtf", sep = "")
 write.table(gtf, sep="\t", col.names = FALSE, row.names = FALSE, file = gtf_filename, quote = FALSE)
 
+
+
+## Make FASTA file from Genbank
+
+final_seq <- ""
+fasta_filename <- paste(seq_name, ".fasta", sep = "")
+fasta_header <- paste(">", seq_name, sep = "")
+start_of_seq <- as.integer(which(grepl("ORIGIN", genbank$X1))+1)
+end_of_seq <- as.integer(which(grepl("//", genbank$X1))[length(which(grepl("//", genbank$X1)))]-1)
+  
+for(i in start_of_seq:end_of_seq){
+  temp_seq <- gsub("[[:digit:]]", "", gsub(" ", "", genbank$X1[i]))
+  final_seq <- paste(final_seq, temp_seq, sep = "")
+}
+
+fasta_df <- rbind(data.frame(X1=fasta_header), data.frame(X1=final_seq))
+write.table(fasta_df, sep="\t", col.names = FALSE, row.names = FALSE, file = fasta_filename, quote = FALSE)
