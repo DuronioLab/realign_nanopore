@@ -80,8 +80,8 @@ Files to more closely examine the results in IGV:
 4. `[reference]_reads.bam` contains the aligned reads for visualization in IGV to examine any potential mutations.
 5. `[reference]_reads.bam.bai` indexed bam required for IGV visualization.
 6. `[reference]_annotations.gtf` contains 'features' to be viewed in IGV. Only created if a Genbank file was provided.
-7. `homopolymer.bed` contains the predicted homopolymer tracts in the reference sequence. Useful to explain sequence errors.
-8. `methylation.bed` contains the predicted *E. coli* methylated sites in the reference sequence. Useful to explain sequence errors.
+7. `homopolymer.bed`<sup>3</sup> contains the predicted homopolymer tracts in the reference sequence. Useful to explain sequence errors.
+8. `methylation.bed`<sup>4</sup> contains the predicted *E. coli* methylated sites in the reference sequence. Useful to explain sequence errors.
 
 Extra files that may be useful:
 
@@ -92,6 +92,8 @@ Extra files that may be useful:
 
 ## Notes
 
-1. An accurate reference FASTA is very important but not required. Minimap2 (the alignment program used) does a fair job of dealing with errors such as unexpected Indels, however it is unclear how much deviation it can take before outputting unexpected results.
+1. An accurate reference FASTA is very important but not required. Medaka/minimap2 (the alignment program used) does a fair job of dealing with errors such as unexpected Indels, however it is unclear how much deviation it can take before outputting unexpected results.
 
 2. If a Genbank file is used, the resulting GTF will only be as accurate as the input. Currently, it is written to only scan for "CDS", "5'UTR", and "3'UTR". When creating the annotation (likely in Snapgene), be sure to mark features as these types rather than simply denoting it in their names. This will help prevent loss or misannotation.
+3. Homopolymer tracts (AAAAAA, GTGTGTGT, etc.) are a particularly difficult task for nanopore sequencers. While greater numbers of reads helps the Medaka/minimap2 alignment and consensus programs, you may still find "errors" in the sequence at these sites. Generally they can be ignored or examined with Sanger sequencing.
+4. We believe that methylated nucleotides are mis-read at a rate that is higher than the expected nanopore error rate, but lower than what you would expect if you have a true mutation in your sequence. This file denotes the three most common *E. coli* methylation sites to cross reference with sequence errors.
