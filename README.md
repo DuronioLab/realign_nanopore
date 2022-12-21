@@ -2,7 +2,7 @@
 
 ## Author: Markus Nevil
 
-Raw Oxford Nanopore sequencing reads of plasmids have multiple start locations even though the original molecules were circular. This script "restarts" each read using BLAT to search for the user-definied origin of the vector. By aligning these restarted reads to a reference sequence, a consensus sequence can be generated and scanned for mutations. This is usueful for vectors with multiple repeats of the same sequence, which normally obfuscates which repeat contains mutations.
+Raw Oxford Nanopore sequencing reads of plasmids have multiple start locations even though the original molecules were circular. This script "restarts" each read using BLAT to search for the user-definied origin of the vector. By aligning these restarted reads to a reference sequence, a consensus sequence can be generated and scanned for mutations. This is useful for vectors with multiple repeats of the same sequence, which normally obfuscates which repeat contains mutations.
 
 ## Quick Start:
 
@@ -26,15 +26,15 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 
 ## Collect/Generate neccessary files/parameters
 
-1. Generate a reference FASTA file for your plasmid in your favorite plasmid editor.
+1. Generate a reference sequence<sup>1</sup> for your plasmid in a plasmid editor.
    - The linear sequence should start and end in vector, thus having the approximate layout:
    
    ![Like This](https://github.com/DuronioLab/realign_nanopore/blob/main/images/githubAsset%202small.png?raw=true)
-2. Upload your plasmid reference sequence as a FASTA file or a Genbank file.
-   - Although not required, uploading a Genbank file will generate a GTF of the genes in your sequence for viewing in IGV.
+2. Export the reference sequence as either a FASTA or Genbank File (Snapgene > File > Export > DNA > Genbank or FASTA)
+   - Although not required, uploading a Genbank<sup>2</sup> file will generate a GTF of the genes in your sequence for viewing in IGV.
 
-3. Upload your raw Nanopore FASTQ file(s). Multiple may be uploaded as long as they are named differently.
-   - **DO NOT** add these files to the `scripts/` folder that was automatically generated.
+3. Upload your raw Nanopore FASTQ file(s) and reference FASTA/Genbank file. Multiple FASTQ's may be uploaded as long as they are named differently.
+   - **DO NOT** add these input files to the `scripts/` folder that was automatically generated.
 
 ### Check that the required files and folders are present.
 
