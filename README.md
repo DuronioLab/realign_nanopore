@@ -1,4 +1,4 @@
-# Re-start Nanopore reads and generate a consensus sequence for repetitive plasmids
+# Nanopore Read re-start and alignment
 
 ## Author: Markus Nevil
 
