@@ -54,7 +54,7 @@ pine/scr/j/s/jsmith1/
       └──subseq_search.R
 ```
 
-**note: you may have *more than one* FASTQ file, but may only have *one* reference FASTA file**
+**note: you may have *more than one* FASTQ file, but may only have *one* reference FASTA or Genbank file**
 
 
 ## Run the script
