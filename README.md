@@ -33,8 +33,9 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 2. Export the reference sequence as either a FASTA or Genbank File (Snapgene > File > Export > DNA > Genbank or FASTA)
    - Although not required, uploading a Genbank<sup>2</sup> file will generate a GTF of the genes in your sequence for viewing in IGV.
 
-3. Upload your raw Nanopore FASTQ file(s) and reference FASTA/Genbank file. Multiple FASTQ's may be uploaded as long as they are named differently.
+3. Upload your raw Nanopore FASTQ file(s) and reference FASTA/Genbank file.
    - **DO NOT** add these input files to the `scripts/` folder that was automatically generated.
+   - Multiple FASTQ's may be uploaded as long as they are named differently.
 
 ### Check that the required files and folders are present.
 
