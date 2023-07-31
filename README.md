@@ -13,7 +13,7 @@ Clone the script into a new directory in your pine directory of Longleaf:
 (Substitute with your own information; example username: `jsmith1`, with example plasmid project name `new_plasmid`)
 
 ```
-cd /pine/scr/[j]/[s]/[jsmith1]
+cd /work/users/[j]/[s]/[jsmith1]
 
 mkdir ./[new_plasmid]
 cd ./[new_plasmid]
