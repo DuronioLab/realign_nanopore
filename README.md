@@ -42,7 +42,7 @@ git clone https://github.com/DuronioLab/realign_nanopore.git && rm -rf ./realign
 After uploading your **FASTA (or Genbank) and FASTQ files** and copying the scripts from github, your file directory should look like:
 
 ```bash
-pine/scr/j/s/jsmith1/
+work/users/j/s/jsmith1/
 └──new_plasmid/
    ├─ reference_plasmid.fasta or .gb
    ├─ raw_reads.fastq
